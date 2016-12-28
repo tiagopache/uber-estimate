@@ -1,4 +1,4 @@
-var baseUrl = 'https://api.uber.com/v1.2/';
+var baseUrl = 'http://api.demo.sensedia.com/uber/v1/';
 //b78YNVWafX1gWy3t68zVIp6QxPB87w#_
 var applicationClientId = 'aZ8uN3rpCLbDFR2tsCtR8bd2OopzkARp';
 var serverToken = '5ftzPACXLTuhEdq7Y3wP_al2OWuww47abCXK62jZ';
