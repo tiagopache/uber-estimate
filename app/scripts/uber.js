@@ -1,7 +1,7 @@
-var baseUrl = 'https://api.uber.com/v1.2/';
+var baseUrl = 'http://api.demo.sensedia.com/uber/v1/';
 //b78YNVWafX1gWy3t68zVIp6QxPB87w#_
-var applicationClientId = '2u0X2kzqw_gJ4Kh_-R4cYsSrBQFWXkzP';
-var serverToken = 'o76XT83N6JLX-dZ5XIbenVJHywAtUISBq-G-HwzL';
+var applicationClientId = 'aZ8uN3rpCLbDFR2tsCtR8bd2OopzkARp';
+var serverToken = '5ftzPACXLTuhEdq7Y3wP_al2OWuww47abCXK62jZ';
 
 var authorizationUrl = 'https://login.uber.com/';
 var authotizationEndpoint = authorizationUrl + 'oauth/v2/authorize';
@@ -22,6 +22,8 @@ function authorize(){
         }
     });
 
+    
+
     // $.get(
     //     authotizationEndpoint + '?client_id=' + applicationClientId + '&response_type=code', 
     //     function (data, textStatus, jqXHR) {
@@ -31,12 +33,13 @@ function authorize(){
     // );
 }
 
+
 function estimatePrice(origin, destiny) {
     $.ajax({
         type: "GET",
         crossDomain: true,
         headers: { 
-                //"Access-Control-Allow-Origin" : "*", 
+                "Allow-Control-Allow-Origin" : "*", 
                 "Content-Type" : "application/json",
                 "Authorization" : "Token " + serverToken,
                 "Accept-Language": "pt_BR"
