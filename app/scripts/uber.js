@@ -1,7 +1,7 @@
 var baseUrl = 'https://api.uber.com/v1.2/';
 //b78YNVWafX1gWy3t68zVIp6QxPB87w#_
-var applicationClientId = 'aZ8uN3rpCLbDFR2tsCtR8bd2OopzkARp';
-var serverToken = '5ftzPACXLTuhEdq7Y3wP_al2OWuww47abCXK62jZ';
+var applicationClientId = '2u0X2kzqw_gJ4Kh_-R4cYsSrBQFWXkzP';
+var serverToken = 'o76XT83N6JLX-dZ5XIbenVJHywAtUISBq-G-HwzL';
 
 var authorizationUrl = 'https://login.uber.com/';
 var authotizationEndpoint = authorizationUrl + 'oauth/v2/authorize';
