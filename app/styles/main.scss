@@ -110,3 +110,15 @@ body {
   line-height: 30px;
   padding-left: 10px;
 }
+
+#response{
+  white-space: pre; 
+  height: auto;
+  border: 0;
+}
+
+#lblPrecos{
+    margin-left: 20px;
+    margin-top: 15px;
+    display: none;
+}

@@ -52,7 +52,12 @@ function estimatePrice(origin, destiny) {
             end_longitude: destiny.lng
         },
         success: function (response) {
-            $('#response').text(response);
+            var prices = "";
+            for(var i = 0; i < response.prices.length - 1; i++){
+                prices += response.prices[i].display_name + " - " + response.prices[i].estimate + "\n";
+            }
+            $('#lblPrecos').css("display", "block");
+            $('#response').text(prices);
         }
     });
 }
