@@ -18,17 +18,9 @@ function authorize(){
         url: authotizationEndpoint + '?client_id=' + applicationClientId + '&response_type=code',
         data: null,
         success: function (response) {
-            $('#response').text(response);
+            $('#response').text(JSON.stringify(response));
         }
     });
-
-    // $.get(
-    //     authotizationEndpoint + '?client_id=' + applicationClientId + '&response_type=code', 
-    //     function (data, textStatus, jqXHR) {
-    //         $('#response').text(JSON.stringify(data));
-    //     },
-    //     "application/json"
-    // );
 }
 
 function estimatePrice(origin, destiny) {
@@ -36,7 +28,6 @@ function estimatePrice(origin, destiny) {
         type: "GET",
         crossDomain: true,
         headers: { 
-                //"Access-Control-Allow-Origin" : "*", 
                 "Content-Type" : "application/json",
                 "Authorization" : "Token " + serverToken,
                 "Accept-Language": "pt_BR"
@@ -49,7 +40,7 @@ function estimatePrice(origin, destiny) {
             end_longitude: destiny.lng
         },
         success: function (response) {
-            $('#response').text(response);
+            $('#response').text(JSON.stringify(response));
         }
     });
 }
