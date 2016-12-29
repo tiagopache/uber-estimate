@@ -18,28 +18,16 @@ function authorize(){
         url: authotizationEndpoint + '?client_id=' + applicationClientId + '&response_type=code',
         data: null,
         success: function (response) {
-            $('#response').text(response);
+            $('#response').text(JSON.stringify(response));
         }
     });
-
-    
-
-    // $.get(
-    //     authotizationEndpoint + '?client_id=' + applicationClientId + '&response_type=code', 
-    //     function (data, textStatus, jqXHR) {
-    //         $('#response').text(JSON.stringify(data));
-    //     },
-    //     "application/json"
-    // );
 }
-
 
 function estimatePrice(origin, destiny) {
     $.ajax({
         type: "GET",
         crossDomain: true,
         headers: { 
-                "Allow-Control-Allow-Origin" : "*", 
                 "Content-Type" : "application/json",
                 "Authorization" : "Token " + serverToken,
                 "Accept-Language": "pt_BR"
