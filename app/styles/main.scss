@@ -117,8 +117,12 @@ body {
   border: 0;
 }
 
-#lblPrecos{
+#lblPrecos, #lblDistancia{
     margin-left: 20px;
     margin-top: 15px;
     display: none;
+}
+
+#lblDistancia {
+  margin-right: 20px;
 }

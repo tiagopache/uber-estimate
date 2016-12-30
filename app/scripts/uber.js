@@ -49,6 +49,7 @@ var priceEstimateEndpoint = baseUrl + 'estimates/price';
                     $('#response').append(controls.getEstimativeCard(price.localized_display_name, price.estimate, price.surge_multiplier));
                 }
                 $('#lblPrecos').css("display", "block");
+                $('#lblDistancia').addClass("pull-right").css("display", "block").text("Distância: " + response.prices[0].distance);
             }
         });
     }
