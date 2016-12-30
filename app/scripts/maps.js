@@ -1,5 +1,5 @@
 // Google Maps API Key
-var key = "AIzaSyDs3SmMCGB-_AwVfWz7xseYBaeE93LWxHI";
+var key = 'AIzaSyDs3SmMCGB-_AwVfWz7xseYBaeE93LWxHI';
 
 var markers = [];
 var origin = null;
@@ -159,7 +159,7 @@ function estimate(){
 }
 
 $(document).ready(function () {
-    $("#estimate").on('click', estimate);
+    $('#estimate').on('click', estimate);
 });
 
 

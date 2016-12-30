@@ -14,9 +14,9 @@ var priceEstimateEndpoint = baseUrl + 'estimates/price';
 
      function authorize(){
         $.ajax({
-            type: "GET",
+            type: 'GET',
             crossDomain: true,
-            headers: { "Access-Control-Allow-Origin": "*", "Content-Type": "application/x-www-form-urlencoded" },
+            headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/x-www-form-urlencoded' },
             url: authotizationEndpoint + '?client_id=' + applicationClientId + '&response_type=code',
             data: null,
             success: function (response) {
@@ -27,12 +27,12 @@ var priceEstimateEndpoint = baseUrl + 'estimates/price';
 
      function estimatePrice(origin, destiny) {
         $.ajax({
-            type: "GET",
+            type: 'GET',
             crossDomain: true,
             headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Token " + serverToken,
-                "Accept-Language": "pt_BR"
+                'Content-Type': 'application/json',
+                'Authorization': 'Token ' + serverToken,
+                'Accept-Language': 'pt_BR'
             },
             url: priceEstimateEndpoint,
             data: {
@@ -48,8 +48,8 @@ var priceEstimateEndpoint = baseUrl + 'estimates/price';
 
                     $('#response').append(controls.getEstimativeCard(price.localized_display_name, price.estimate, price.surge_multiplier));
                 }
-                $('#lblPrecos').css("display", "block");
-                $('#lblDistancia').addClass("pull-right").css("display", "block").text("Distância: " + response.prices[0].distance);
+                $('#lblPrecos').css('display', 'block');
+                $('#lblDistancia').addClass('pull-right').css('display', 'block').text('Distância: ' + response.prices[0].distance);
             }
         });
     }
