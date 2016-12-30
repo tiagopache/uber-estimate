@@ -54,21 +54,20 @@
 
         </div>
         <div id="divMap" class="row">
-          <div id="floating-panel">
+          <!--<div id="floating-panel">
             <input type="button" value="Hide Markers" onclick="clearMarkers();">
             <input type="button" value="Show All Markers" onclick="showMarkers();">
             <input type="button" value="Delete Markers" onclick="deleteMarkers();">
-          </div>
+          </div>-->
           <div id="map">
           </div>
         </div>
-        <div class="row form">
-          <div class="form-group col-md-5">
+        <div class="row">
+          <div class="col-md-12">
             <label id="lblPrecos">Preços Estimados</label>
-            <div class="form-group col-md-12">
-              <div class="form-control" name="response" id="response" cols="30" rows="10"></div>
-            </div>
+              <div name="response" id="response"></div>
           </div>
+
           <!--<input type="button" class="btn btn-primary" value="Authorize" onclick="authorize();">-->
         </div>
       </div>
@@ -98,7 +97,7 @@
       </div>-->
 
     <div class="footer">
-      <p>♥ from the Yeoman team</p>
+      <p>♥ from Sensedia team</p>
     </div>
   </div>
 
@@ -143,6 +142,7 @@
   <script src="scripts/main.js"></script>
   <script src="scripts/maps.js"></script>
   <script src="scripts/uber.js"></script>
+  <script src="scripts/controls.js"></script>
   <!-- endbuild -->
 </body>
 
