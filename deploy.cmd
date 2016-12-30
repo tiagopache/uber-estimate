@@ -105,7 +105,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   popd
 )
 
-IF EXIST "%DEPLOYMENT_TARGET%\gulpfile.js" (
+IF EXIST "gulpfile.js" (
   pushd "%DEPLOYMENT_TARGET"
   call .\node_modules\.bin\gulp default
   IF !ERRORLEVEL! NEQ 0 goto error
