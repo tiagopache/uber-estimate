@@ -105,6 +105,7 @@ IF /I "package.json" NEQ "" (
 :: 4. Install Bower modules
 IF /I "bower.json" NEQ "" (
   REM pushd "%DEPLOYMENT_TARGET%"
+  call :ExecuteCmd !NPM_CMD! install bower
   call :ExecuteCmd "%DEPLOYMENT_SOURCE%\node_modules\.bin\bower" install
   IF !ERRORLEVEL! NEQ 0 goto error
   REM popd
