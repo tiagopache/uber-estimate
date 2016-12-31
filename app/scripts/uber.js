@@ -1,7 +1,5 @@
 var baseUrl = 'http://api.demo.sensedia.com/uber/v1/';
-    //b78YNVWafX1gWy3t68zVIp6QxPB87w#_
 var applicationClientId = 'aZ8uN3rpCLbDFR2tsCtR8bd2OopzkARp';
-var serverToken = '5ftzPACXLTuhEdq7Y3wP_al2OWuww47abCXK62jZ';
 
 var authorizationUrl = 'https://login.uber.com/';
 var authotizationEndpoint = authorizationUrl + 'oauth/v2/authorize';
@@ -31,7 +29,6 @@ var priceEstimateEndpoint = baseUrl + 'estimates/price';
             crossDomain: true,
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Token ' + serverToken,
                 'Accept-Language': 'pt_BR'
             },
             url: priceEstimateEndpoint,
