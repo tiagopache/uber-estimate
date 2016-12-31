@@ -23,7 +23,7 @@ setlocal enabledelayedexpansion
 SET ARTIFACTS=%~dp0%..\artifacts
 
 IF NOT DEFINED DEPLOYMENT_SOURCE (
-  SET DEPLOYMENT_SOURCE=%~dp0%.
+  SET DEPLOYMENT_SOURCE=%~dp0%\dist.
 )
 
 IF NOT DEFINED DEPLOYMENT_TARGET (
@@ -88,12 +88,6 @@ goto :EOF
 :Deployment
 echo Handling node.js deployment.
 
-:: 1. KuduSync
-IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
-  call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
-  IF !ERRORLEVEL! NEQ 0 goto error
-)
-
 :: 2. Select node version
 call :SelectNodeVersion
 
@@ -101,20 +95,26 @@ echo %DEPLOYMENT_TARGET%
 echo %DEPLOYMENT_SOURCE%
 
 :: 3. Install npm packages
-IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
-  pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd !NPM_CMD! install --production
+IF /I "package.json" NEQ "" (
+  REM pushd "%DEPLOYMENT_TARGET%"
+  call :ExecuteCmd !NPM_CMD! install 
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
 
 :: 4. Restore gulp packages and run gulp tasks
-IF EXIST "%DEPLOYMENT_TARGET%\gulpfile.js" (
-  call :ExecuteCmd !NPM_CMD! gulp
-  pushd "%DEPLOYMENT_TARGET"
+IF /I "gulpfile.js" NEQ "" (
+  call :ExecuteCmd !NPM_CMD! install gulp
+  REM pushd "%DEPLOYMENT_TARGET"
   call :ExecuteCmd "%DEPLOYMENT_SOURCE%\node_modules\.bin\gulp" default
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
+)
+
+:: 1. KuduSync
+IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
+  call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
+  IF !ERRORLEVEL! NEQ 0 goto error
 )
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
