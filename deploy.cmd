@@ -99,7 +99,15 @@ IF /I "package.json" NEQ "" (
   REM pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd !NPM_CMD! install 
   IF !ERRORLEVEL! NEQ 0 goto error
-  popd
+  REM popd
+)
+
+:: 4. Install Bower modules
+IF /I "bower.json" NEQ "" (
+  REM pushd "%DEPLOYMENT_TARGET%"
+  call :ExecuteCmd "%DEPLOYMENT_SOURCE%\node_modules\.bin\bower" install
+  IF !ERRORLEVEL! NEQ 0 goto error
+  REM popd
 )
 
 :: 4. Restore gulp packages and run gulp tasks
@@ -108,7 +116,7 @@ IF /I "gulpfile.js" NEQ "" (
   REM pushd "%DEPLOYMENT_TARGET"
   call :ExecuteCmd "%DEPLOYMENT_SOURCE%\node_modules\.bin\gulp" default
   IF !ERRORLEVEL! NEQ 0 goto error
-  popd
+  REM popd
 )
 
 :: 1. KuduSync
