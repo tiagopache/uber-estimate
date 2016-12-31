@@ -114,6 +114,7 @@ IF /I "bower.json" NEQ "" (
 :: 4. Restore gulp packages and run gulp tasks
 IF /I "gulpfile.js" NEQ "" (
   call :ExecuteCmd !NPM_CMD! install gulp
+  call :ExecuteCmd !NPM_CMD! rebuild node-sass
   REM pushd "%DEPLOYMENT_TARGET"
   call :ExecuteCmd "%DEPLOYMENT_SOURCE%\node_modules\.bin\gulp" default
   IF !ERRORLEVEL! NEQ 0 goto error
