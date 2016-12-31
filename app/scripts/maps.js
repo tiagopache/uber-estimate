@@ -39,7 +39,12 @@ function initMap(){
             infoWindow.setContent('Location found.');
             map.setCenter(origin);
         }, function(){
-            handleLocationError(true, infoWindow, map.getCenter());
+            origin = {
+                zoom: 12,
+                lat: -22.907566,
+                lng: -43.180350
+            };
+            handleLocationError(true, infoWindow, origin);
         })
     } else {
         // Browser doesn't support Geolocation
