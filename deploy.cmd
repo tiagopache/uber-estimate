@@ -110,9 +110,9 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 
 :: 4. Restore gulp packages and run gulp tasks
 IF EXIST "%DEPLOYMENT_TARGET%\gulpfile.js" (
-  call npm install gulp
+  call :ExecuteCmd !NPM_CMD! gulp
   pushd "%DEPLOYMENT_TARGET"
-  call :ExecuteCmd !NPM_CMD! gulp default
+  call :ExecuteCmd "%DEPLOYMENT_SOURCE%\node_modules\.bin\gulp" default
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
