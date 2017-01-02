@@ -52,7 +52,7 @@ var controls = {
     },
 
     getArrowDown: function() {
-        var $mainDiv = $('<div></div>').addClass('row');
+        var $mainDiv = $('<div></div>').prop('id', 'arrow').addClass('row');
         var $colDiv = $('<div></div>').addClass('col-md-12 text-center').appendTo($mainDiv);
         var $arrowSpan = $('<span></span>').addClass('glyphicon glyphicon-arrow-down').appendTo($colDiv);
 

@@ -138,8 +138,13 @@ function addMarker(location, map) {
 
 function removeMarker() {
     var id = $(this).prop('id');
-    markers.find()
+    $('#arrow').fadeOut('slow').remove();
     markers.splice(id, 1);
+
+    if (markers.length < 2) {
+        $('#divSearch').toggle('slow');
+        $('#divEstimate').toggle('slow');
+    }
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
