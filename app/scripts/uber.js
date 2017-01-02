@@ -43,10 +43,10 @@ var priceEstimateEndpoint = baseUrl + 'estimates/price';
                 for (var i = 0; i < response.prices.length; i++) {
                     var price = response.prices[i];
 
-                    $('#response').append(controls.getEstimativeCard(price.localized_display_name, price.estimate, price.surge_multiplier));
+                    $('#response').append(controls.getEstimativeCard(price.localized_display_name, price.estimate, price.surge_multiplier)).fadeIn('slow');
                 }
-                $('#lblPrecos').css('display', 'block');
-                $('#lblDistancia').addClass('pull-right').css('display', 'block').text('Distância: ' + response.prices[0].distance);
+                $('#lblPrecos').css('display', 'block').fadeIn('slow');
+                $('#lblDistancia').addClass('pull-right').css('display', 'block').text('Distância: ' + response.prices[0].distance).fadeIn('slow');
             }
         });
     }

@@ -94,7 +94,13 @@ function codeLatLng(latLng) {
         if (status === 'OK') {
             if (results[0]) {
                 map.setZoom(16);
+
                 $('#addresses').append(controls.getAddressItem(markers.length - 1,results[0].formatted_address));
+                
+                if (markers.length === 1) {
+                    $('#addresses').append(controls.getArrowDown());
+                }
+                
                 $('#txtAddress').val('');
             } else {
                 alert('No results found!');

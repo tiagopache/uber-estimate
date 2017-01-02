@@ -49,5 +49,13 @@ var controls = {
         $('<span></span>').attr('aria-hidden', 'true').html('&times;').appendTo($btn);
 
         return $mainDiv;
+    },
+
+    getArrowDown: function() {
+        var $mainDiv = $('<div></div>').addClass('row');
+        var $colDiv = $('<div></div>').addClass('col-md-12 text-center').appendTo($mainDiv);
+        var $arrowSpan = $('<span></span>').addClass('glyphicon glyphicon-arrow-down').appendTo($colDiv);
+
+        return $mainDiv;
     }
 }
