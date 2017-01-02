@@ -39,6 +39,8 @@ var priceEstimateEndpoint = baseUrl + 'estimates/price';
                 end_longitude: destiny.lng
             },
             success: function (response) {
+                var $btn = $('#estimate');
+                
                 $('#response').html('');
 
                 for (var i = 0; i < response.prices.length; i++) {
@@ -47,9 +49,11 @@ var priceEstimateEndpoint = baseUrl + 'estimates/price';
                     $('#response').append(controls.getEstimativeCard(price.localized_display_name, price.estimate, price.surge_multiplier)).fadeIn('slow');
                 }
                 
-                $('#lblPrecos').css('display', 'block').fadeIn('slow');
-                $('#lblDistancia').addClass('pull-right').css('display', 'block').text('Distância: ' + response.prices[0].distance).fadeIn('slow');
-                $('#divEstimate').fadeOut('slow').hide();
+                $('#lblPrecos').toggle('slow');
+                $('#lblDistancia').addClass('pull-right').text('Distância: ' + response.prices[0].distance).toggle('slow');
+                $('#divEstimate').toggle('slow');
+                
+                $btn.button('reset');
             }
         });
     }

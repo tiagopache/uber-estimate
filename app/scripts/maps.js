@@ -6,15 +6,13 @@ var origin = null;
 var map = null;
 var autocomplete = null;
 
-var labels = 'AB';
-var labelIndex = 0;
-
 var directionsDisplay = null;
 var directionsService = null;
 var geoCoder = null;
+var infoWindow = null;
 
 function initMap(){
-    origin = {lat: -25.363, lng: 131.044};
+    origin = {lat: -22.907566, lng: -43.180350};
 
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
@@ -22,8 +20,6 @@ function initMap(){
     });
 
     geoCoder = new google.maps.Geocoder();
-
-    var infoWindow = new google.maps.InfoWindow({map: map});
 
     directionsService = new google.maps.DirectionsService;
     directionsDisplay = new google.maps.DirectionsRenderer;
@@ -48,8 +44,8 @@ function initMap(){
             
             autocomplete.setBounds(circle.getBounds());
 
-            infoWindow.setPosition(origin);
-            infoWindow.setContent('Location found.');
+            //infoWindow.setPosition(origin);
+            //infoWindow.setContent('Location found.');
             map.setCenter(origin);
         }, function(){
             origin = {
@@ -65,10 +61,12 @@ function initMap(){
             
             autocomplete.setBounds(circle.getBounds());
 
+            infoWindow = new google.maps.InfoWindow({map: map});
             handleLocationError(true, infoWindow, origin);
         })
     } else {
         // Browser doesn't support Geolocation
+        infoWindow = new google.maps.InfoWindow({map: map});
         handleLocationError(false, infoWindow, map.getCenter());
     }
 
@@ -137,14 +135,25 @@ function addMarker(location, map) {
 }
 
 function removeMarker() {
-    var id = $(this).prop('id');
-    $('#arrow').fadeOut('slow').remove();
-    markers.splice(id, 1);
+    cleanResponse();
 
-    if (markers.length < 2) {
+    clearMarkers();
+    
+    var id = $(this).prop('id');
+    $('#arrow').fadeOut('slow', function () { $(this).remove(); });
+
+    if (id === "1")
+        markers.pop();
+    else if (id === "0")
+        markers.shift();
+    
+    if (markers.length < 2 && markers.length > 0) {
         $('#divSearch').toggle('slow');
-        $('#divEstimate').toggle('slow');
+        $('#divEstimate').fadeOut('slow');
+
+        directionsDisplay.setMap(null);
     }
+    showMarkers();
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -174,6 +183,8 @@ function deleteMarkers() {
 }
 
 function calculateAndDisplayRoute(_origin, _destiny) {
+    directionsDisplay.setMap(map);
+
     directionsService.route({
         origin: _origin,
         destination: _destiny,//{placeId: placeId},
@@ -192,6 +203,7 @@ function calculateAndDisplayRoute(_origin, _destiny) {
 google.maps.event.addDomListener(window, 'load', initMap);
 
 function estimate(){
+    var $btn = $(this).button('loading');
     var origin = {
         lat: markers[0].position.lat(), 
         lng: markers[0].position.lng()
