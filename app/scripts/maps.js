@@ -57,6 +57,14 @@ function initMap(){
                 lat: -22.907566,
                 lng: -43.180350
             };
+
+            var circle = new google.maps.Circle({
+                center: origin,
+                radius: position.coords.accuracy
+            });
+            
+            autocomplete.setBounds(circle.getBounds());
+
             handleLocationError(true, infoWindow, origin);
         })
     } else {
