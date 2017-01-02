@@ -4,6 +4,7 @@ var key = 'AIzaSyDs3SmMCGB-_AwVfWz7xseYBaeE93LWxHI';
 var markers = [];
 var origin = null;
 var map = null;
+var autocomplete = null;
 
 var labels = 'AB';
 var labelIndex = 0;
@@ -28,12 +29,24 @@ function initMap(){
     directionsDisplay = new google.maps.DirectionsRenderer;
     directionsDisplay.setMap(map);
 
+    autocomplete = new google.maps.places.Autocomplete(
+        (document.getElementById('txtAddress')),
+        {types: ['geocode']}
+    );
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
             origin = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
+
+            var circle = new google.maps.Circle({
+                center: origin,
+                radius: position.coords.accuracy
+            });
+            
+            autocomplete.setBounds(circle.getBounds());
 
             infoWindow.setPosition(origin);
             infoWindow.setContent('Location found.');
@@ -73,7 +86,9 @@ function codeLatLng(latLng) {
         if (status === 'OK') {
             if (results[0]) {
                 map.setZoom(16);
-                document.getElementById('txtAddress').value = results[0].formatted_address;
+                //document.getElementById('txtAddress').value = results[0].formatted_address;
+                $('#addresses').append(controls.getAddressItem(markers.length - 1,results[0].formatted_address));
+                $('#txtAddress').val('');
             } else {
                 alert('No results found!');
             }
@@ -104,6 +119,12 @@ function addMarker(location, map) {
     if (markers.length === 2) {
         calculateAndDisplayRoute(markers[0].position, markers[1].position);
     }
+}
+
+function removeMarker() {
+    var id = $(this).prop('id');
+    markers.find()
+    markers.splice(id, 1);
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -162,9 +183,5 @@ function estimate(){
 
     estimatePrice(origin, destiny);
 }
-
-$(document).ready(function () {
-    $('#estimate').on('click', estimate);
-});
 
 

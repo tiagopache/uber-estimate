@@ -33,18 +33,40 @@
     <div class="header">
       <ul class="nav nav-pills pull-right">
         <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <!--<li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>-->
       </ul>
       <h3 class="text-muted">Uber Estimate</h3>
     </div>
 
-    <div class="row form">
-      <div id="divControls" class="form-group form-inline">
-        <label for="txtAddress" class="control-label">Endereço:</label>
-        <input id="txtAddress" name="txtAddress" type="text" class="form-control" autocomplete="on">
-        <input type="button" class="btn btn-primary" value="Search" onclick="codeAddress();">
-        <input type="button" class="btn btn-default" id="estimate" value="Estimate">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-horizontal">
+          <div class="form-group">
+            <label for="txtAddress" class="col-md-2 control-label">Endereço:</label>
+            <div class="col-md-10">
+              <input id="txtAddress" placeholder="Digite seu endereço" name="txtAddress" type="text" class="form-control" autocomplete="on">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+              <input type="button" class="btn btn-primary" id="search" value="Search">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div id="addresses" class="col-md-12"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <input type="button" class="btn btn-default" id="estimate" value="Estimate">
+          </div>
+        </div>
       </div>
     </div>
 
@@ -61,10 +83,10 @@
         </div>
         <div class="row">
           <div class="col-md-6">
-              <label id="lblPrecos">Preços Estimados</label>
+            <label id="lblPrecos">Preços Estimados</label>
           </div>
           <div class="col-md-6">
-              <label id="lblDistancia"></label>
+            <label id="lblDistancia"></label>
           </div>
           <div class="row">
             <div class="col-md-12">
@@ -107,47 +129,47 @@
 
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
   <script>
-      (function (b, o, i, l, e, r) {
+    (function (b, o, i, l, e, r) {
       b.GoogleAnalyticsObject = l; b[l] || (b[l] =
         function () { (b[l].q = b[l].q || []).push(arguments) }); b[l].l = +new Date;
-        e = o.createElement(i); r = o.getElementsByTagName(i)[0];
-        e.src = 'https://www.google-analytics.com/analytics.js';
-        r.parentNode.insertBefore(e, r)
-      } (window, document, 'script', 'ga'));
-      ga('create', 'UA-XXXXX-X'); ga('send', 'pageview');
-    </script>
+      e = o.createElement(i); r = o.getElementsByTagName(i)[0];
+      e.src = 'https://www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e, r)
+    } (window, document, 'script', 'ga'));
+    ga('create', 'UA-XXXXX-X'); ga('send', 'pageview');
+  </script>
 
-  <!-- Google Maps API -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDs3SmMCGB-_AwVfWz7xseYBaeE93LWxHI"></script>
+<!-- Google Maps API -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDs3SmMCGB-_AwVfWz7xseYBaeE93LWxHI&libraries=places"></script>
 
-  <!-- build:js scripts/vendor.js -->
-  <!-- bower:js -->
-  <script src="/bower_components/jquery/dist/jquery.js"></script>
-  <script src="/bower_components/modernizr/modernizr.js"></script>
-  <!-- endbower -->
-  <!-- endbuild -->
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+<script src="/bower_components/modernizr/modernizr.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
 
-  <!-- build:js scripts/plugins.js -->
-  <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
-  <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
-  <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js"></script>
-  <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js"></script>
-  <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
-  <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js"></script>
-  <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/button.js"></script>
-  <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover.js"></script>
-  <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js"></script>
-  <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
-  <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
-  <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
-  <!-- endbuild -->
+<!-- build:js scripts/plugins.js -->
+<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
+<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
+<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js"></script>
+<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js"></script>
+<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
+<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js"></script>
+<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/button.js"></script>
+<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover.js"></script>
+<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js"></script>
+<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
+<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
+<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
+<!-- endbuild -->
 
-  <!-- build:js scripts/main.js -->
-  <script src="scripts/main.js"></script>
-  <script src="scripts/maps.js"></script>
-  <script src="scripts/uber.js"></script>
-  <script src="scripts/controls.js"></script>
-  <!-- endbuild -->
+<!-- build:js scripts/main.js -->
+<script src="scripts/main.js"></script>
+<script src="scripts/maps.js"></script>
+<script src="scripts/uber.js"></script>
+<script src="scripts/controls.js"></script>
+<!-- endbuild -->
 </body>
 
 </html>

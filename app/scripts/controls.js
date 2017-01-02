@@ -22,7 +22,7 @@ var controls = {
 
         var $dl = $('<dl></dl>').appendTo($panelBodyDiv);
 
-        $('<dt></dt>').text('Estimativa').appendTo($dl);
+        // $('<dt></dt>').text('Estimativa').appendTo($dl);
         $('<dd></dd>').text(estimate).appendTo($dl);
 
         if ((multiplier !== null || multiplier !== 'undefined') && multiplier > 1)
@@ -35,11 +35,19 @@ var controls = {
             $('<dt></dt>').text('Multiplicador').appendTo($dl);
 
             var multi = multiplier + ' x';
-            
+
             $('<dd></dd>').text(multi).appendTo($dl);
         }        
         
         return $mainDiv;
-    }
+    },
 
+    getAddressItem: function(id, address) {
+        var $mainDiv = $('<div></div>').addClass('alert alert-dismissible').attr('role', 'alert').text(address);
+        
+        var $btn = $('<button></button>').prop('id', id).addClass('close').prop('type', 'button').attr('data-dismiss', 'alert').attr('aria-label', 'Close').on('click', removeMarker).appendTo($mainDiv);
+        $('<span></span>').attr('aria-hidden', 'true').html('&times;').appendTo($btn);
+
+        return $mainDiv;
+    }
 }
