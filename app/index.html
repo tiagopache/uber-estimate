@@ -39,18 +39,18 @@
       <h3 class="text-muted">Uber Estimate</h3>
     </div>
 
-    <div class="row">
+    <div class="row" id="divSearch">
       <div class="col-md-12">
         <div class="form-horizontal">
           <div class="form-group">
             <label for="txtAddress" class="col-md-2 control-label">Endereço:</label>
-            <div class="col-md-10">
+            <div class="col-md-9">
               <input id="txtAddress" placeholder="Digite seu endereço" name="txtAddress" type="text" class="form-control" autocomplete="on">
             </div>
-          </div>
-          <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-              <input type="button" class="btn btn-primary" id="search" value="Search">
+            <div class="col-md-1">
+              <button type="button" class="btn btn-primary" id="search" value="Search">
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
             </div>
           </div>
         </div>
@@ -62,9 +62,11 @@
         <div class="row">
           <div id="addresses" class="col-md-12"></div>
         </div>
-        <div class="row">
+        <div class="row" id="divEstimate">
           <div class="col-md-12">
-            <input type="button" class="btn btn-default" id="estimate" value="Estimate">
+            <button type="button" class="btn btn-primary" id="estimate" value="Estimate">
+              <span class="glyphicon glyphicon-usd"></span>imular
+            </button>
           </div>
         </div>
       </div>

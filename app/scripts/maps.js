@@ -94,7 +94,6 @@ function codeLatLng(latLng) {
         if (status === 'OK') {
             if (results[0]) {
                 map.setZoom(16);
-                //document.getElementById('txtAddress').value = results[0].formatted_address;
                 $('#addresses').append(controls.getAddressItem(markers.length - 1,results[0].formatted_address));
                 $('#txtAddress').val('');
             } else {
@@ -126,6 +125,8 @@ function addMarker(location, map) {
 
     if (markers.length === 2) {
         calculateAndDisplayRoute(markers[0].position, markers[1].position);
+        $('#divSearch').toggle('slow');
+        $('#divEstimate').toggle('slow');
     }
 }
 
